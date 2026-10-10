@@ -6,13 +6,13 @@ title: Privacy Policy
 
 # Privacy Policy — Speed Vario
 
-*Last updated: September 2026*
+*Last updated: October 2026*
 
 ## Overview
 
 Speed Vario ("the app") is a GPS speed and altitude logging application for iPhone and Apple Watch. Your privacy is important. This policy explains what data is used, how it is processed, and how it is protected.
 
-Speed Vario has **no account, no analytics, no advertising and no third‑party trackers**. Your recordings live on your device — and, if you switch on iCloud Backup, in **your own private iCloud space**, which the developer cannot access. There is no developer server of any kind.
+Speed Vario has **no account, no analytics, no advertising and no third‑party trackers**. Your recordings live on your device — and, if you switch on iCloud Backup, in **your own private iCloud space**, which the developer cannot access. There is no developer server that receives your data: the only files the developer publishes are static map data (place names, see below), served by GitHub Pages.
 
 ## Data used
 
@@ -47,7 +47,11 @@ Speed Vario can copy your recorded outings to **your own private iCloud database
 Speed Vario works offline for its core features (live readout and recording). Country detection for your tracks is performed **entirely on‑device** (no network). A few **optional** features send the relevant coordinates to third‑party services, and only when you use them:
 
 - **Maps, 3D terrain and satellite fly‑through video** use Apple **MapKit**, which sends location to Apple to fetch map imagery and elevation, under Apple's privacy policy. With no network connection the app falls back to a **basemap bundled inside the app** (public‑domain Natural Earth data): coastlines, lakes, rivers, glaciers, urban areas, major roads, cities and airports. That fallback requires no connection and sends nothing anywhere.
+- **Offline place names** — the offline basemap names towns, villages, peaks and passes from **OpenStreetMap** data. Cities, towns and well‑known peaks are bundled inside the app. Villages, hamlets and the other peaks and passes of the area around you are downloaded **ahead of time, while you have a connection**, so the map can name them once you lose it: the app requests the files of the 1° squares (about 100 km) around your position from **GitHub Pages** (thmaed.github.io), where they are published as static files. Only the address of each square is requested — never your precise position, your tracks or any identifier — though, as with any web request, GitHub sees your IP address. The files are kept on your device and refreshed every few months.
 - **Place names** — ski resort / lift names and departure/arrival aerodrome names are looked up from **OpenStreetMap** (Overpass API). Only the queried coordinates are sent; the result is cached on your device so the lookup runs once.
+- **Route drawing** — when you draw a route on the map, the trails and paths of the area shown are downloaded from **OpenStreetMap** (Overpass API) so the route can follow them. Only the rectangle of map being viewed is sent, never your position or the route; the trails are kept on your device for 30 days and the way along them is computed entirely on your device.
+- **Ski lifts** — on skis, the height above ground is shown only while you ride a chairlift, gondola or cable car. To know where those are, the app asks **OpenStreetMap** (Overpass API) for the lifts within about 10 km of your position, once per area; nothing else is sent, and the answer is kept on your device.
+- **Elevation** — the climbing of a drawn route, the 3D terrain, the fly‑through video and the **height above ground** read elevation from the open **AWS Terrain Tiles** (Amazon Web Services open data), with **OpenTopoData** (opentopodata.org, open SRTM data) as a fallback for some views. Only the tiles or points covering the area are requested. For the height above ground, the tiles around your position are fetched when you arm take‑off detection or start a recording, and you can download an area in advance from Settings → Offline terrain. When the Apple Watch records, it requests the same tiles and lifts for its own position, through the iPhone's connection or its own. Tiles are kept on the device (up to 250 MB on the iPhone, 60 MB on the watch; the least used go first) and can be erased from the same screen.
 - **Aerodromes and runways** — in Aviation mode the app names the fields you took off from, landed at or touched, and the runway used, from a **database bundled inside the app** (derived from public-domain OurAirports data). It is read-only and queried entirely on your device: identifying an airfield sends nothing anywhere, and the flight it belongs to is never transmitted.
 
 No other data is transmitted. There is no developer server, and no location or sensor data is uploaded to the developer.
@@ -85,13 +89,13 @@ Questions? Contact: [variospeed67@gmail.com](mailto:variospeed67@gmail.com)
 
 # Politique de confidentialité — Speed Vario (Français)
 
-*Dernière mise à jour : septembre 2026*
+*Dernière mise à jour : octobre 2026*
 
 ## Aperçu
 
 Speed Vario (« l'app ») est une application iPhone et Apple Watch de mesure de vitesse et d'altitude par GPS. Votre vie privée est importante. Cette politique explique quelles données sont utilisées, comment elles sont traitées et protégées.
 
-Speed Vario fonctionne **sans compte, sans analytique, sans publicité et sans traceur tiers**. Vos enregistrements restent sur votre appareil — et, si vous activez la sauvegarde iCloud, dans **votre propre espace iCloud privé**, auquel le développeur n'a aucun accès. Il n'existe aucun serveur du développeur, d'aucune sorte.
+Speed Vario fonctionne **sans compte, sans analytique, sans publicité et sans traceur tiers**. Vos enregistrements restent sur votre appareil — et, si vous activez la sauvegarde iCloud, dans **votre propre espace iCloud privé**, auquel le développeur n'a aucun accès. Il n'existe aucun serveur du développeur qui reçoive vos données : les seuls fichiers que publie le développeur sont des données cartographiques statiques (noms de lieux, voir plus bas), servies par GitHub Pages.
 
 ## Données utilisées
 
@@ -126,7 +130,11 @@ Speed Vario peut copier vos sorties enregistrées dans **votre propre base iClou
 Speed Vario fonctionne hors ligne pour ses fonctions principales (affichage en direct et enregistrement). La détection des pays de vos traces est réalisée **entièrement sur l'appareil** (sans réseau). Quelques fonctions **optionnelles** envoient les coordonnées concernées à des services tiers, uniquement lorsque vous les utilisez :
 
 - **Cartes, relief 3D et vidéo de survol satellite** utilisent Apple **MapKit**, qui envoie la position à Apple pour récupérer l'imagerie et l'élévation, selon la politique de confidentialité d'Apple. Sans connexion, l'app bascule sur un **fond de carte embarqué** (données Natural Earth, domaine public) : traits de côte, lacs, fleuves, glaciers, zones urbaines, grands axes, villes et aéroports. Ce repli ne demande aucune connexion et n'envoie rien nulle part.
+- **Noms de lieux hors ligne** — le fond de carte embarqué nomme villes, villages, sommets et cols à partir des données **OpenStreetMap**. Les villes et les sommets connus sont embarqués dans l'app. Les villages, hameaux et autres sommets et cols de la région où vous vous trouvez sont téléchargés **à l'avance, tant que vous avez une connexion**, pour que la carte puisse les nommer une fois la connexion perdue : l'app demande les fichiers des carrés de 1° (environ 100 km) autour de votre position à **GitHub Pages** (thmaed.github.io), où ils sont publiés sous forme de fichiers statiques. Seule l'adresse de chaque carré est demandée — jamais votre position précise, vos traces ni aucun identifiant — même si, comme pour toute requête web, GitHub voit votre adresse IP. Les fichiers restent sur votre appareil et sont rafraîchis tous les quelques mois.
 - **Noms de lieux** — les noms de stations / remontées de ski et d'aérodromes de départ/arrivée sont recherchés via **OpenStreetMap** (API Overpass). Seules les coordonnées interrogées sont envoyées ; le résultat est mis en cache sur votre appareil pour ne lancer la recherche qu'une fois.
+- **Tracé d'itinéraire** — quand vous tracez un itinéraire sur la carte, les sentiers et chemins de la zone affichée sont téléchargés depuis **OpenStreetMap** (API Overpass) pour que le tracé puisse les suivre. Seul le rectangle de carte affiché est envoyé, jamais votre position ni l'itinéraire ; les sentiers sont gardés 30 jours sur votre appareil et le chemin est calculé entièrement sur votre appareil.
+- **Remontées mécaniques** — à ski, la hauteur sol ne s'affiche que sur un télésiège, une télécabine ou un téléphérique. Pour savoir où ils se trouvent, l'app demande à **OpenStreetMap** (API Overpass) les remontées situées à une dizaine de kilomètres de votre position, une fois par zone ; rien d'autre n'est envoyé, et la réponse est gardée sur votre appareil.
+- **Altitude du relief** — le dénivelé d'un itinéraire tracé, le relief 3D, la vidéo de survol et la **hauteur sol** lisent l'altitude dans les **AWS Terrain Tiles** ouvertes (données ouvertes d'Amazon Web Services), avec **OpenTopoData** (opentopodata.org, données SRTM ouvertes) en secours pour certaines vues. Seules les tuiles ou les points couvrant la zone sont demandés. Pour la hauteur sol, les tuiles autour de votre position sont chargées quand vous armez la détection du décollage ou démarrez un enregistrement, et vous pouvez télécharger une zone à l'avance depuis Réglages → Relief hors ligne. Quand l'Apple Watch enregistre, elle demande les mêmes tuiles et les mêmes remontées pour sa propre position, par la connexion de l'iPhone ou la sienne. Les tuiles restent sur l'appareil (jusqu'à 250 Mo sur l'iPhone, 60 Mo sur la montre ; les moins utilisées partent en premier) et s'effacent depuis le même écran.
 - **Aérodromes et pistes** — en mode Aviation, l'app nomme les terrains d'où vous avez décollé, où vous vous êtes posé ou que vous avez touchés, ainsi que la piste utilisée, à partir d'une **base embarquée dans l'app** (dérivée des données OurAirports, domaine public). Elle est en lecture seule et interrogée entièrement sur votre appareil : identifier un terrain n'envoie rien nulle part, et le vol auquel il appartient n'est jamais transmis.
 
 Aucune autre donnée n'est transmise. Il n'y a pas de serveur du développeur, et aucune donnée de localisation ou de capteur n'est envoyée au développeur.
