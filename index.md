@@ -6,7 +6,7 @@ title: Support
 
 # Speed Vario — Support
 
-*Last updated: September 2026*
+*Last updated: 21 October 2026*
 
 A question, a bug, a translation that reads wrong: **variospeed67@gmail.com**
 
@@ -52,7 +52,7 @@ Two ways, and the first is the one to pick.
 
 ### Does my heart rate go to iCloud?
 
-**No — never.** Apple's rules forbid apps from storing health data in iCloud, so heart rate and active energy are stripped out of everything Speed Vario uploads. They stay on the device and in Apple Health. When you restore a session onto a new iPhone, the app reads them back from Apple Health for that session's time window, so the heart-rate chart is rebuilt anyway — provided "Save to Apple Health" was on when you recorded it.
+**No — never.** Apple's rules forbid apps from storing health data in iCloud, so heart rate and active energy are stripped out of everything Speed Vario uploads. They stay on the device and in Apple Health. When you restore a session onto a new iPhone, the app reads them back from Apple Health for that session's time window, so the heart-rate chart is rebuilt anyway — provided "Save to Apple Health" was on when you recorded it. (Live sharing is a different thing: heart rate is sent there only if you switch it on, and only encrypted — see below.)
 
 ### iCloud says "No iCloud account on this device"
 
@@ -72,6 +72,28 @@ In the Logbook, swipe left on any session to delete it, or uninstall the app to 
 
 ---
 
+## Live sharing
+
+### How does live sharing work?
+
+Tap the waves icon in the dock at the top of the main screen (before or during an outing), read the notice and tap **Start sharing**. You get a link, a QR code and a share button; anyone you give the link to follows your outing on a 3D map, from any browser, with no app and no account: position, speed, altitude, distance and — only if you switch it on — heart rate, with the five heart-rate zones. If your Apple Watch is recording, it sends the points itself; otherwise the iPhone does. One point every 15 seconds (every 30 seconds below 30 % battery; sharing stops below 10 %). The red **Stop** button is always within reach, on the iPhone and on the watch (tap the red "Live" pill twice).
+
+### Can the developer see my position or my heart rate?
+
+**No.** Every point is encrypted on your device (AES-256-GCM) before it is sent, and the key exists only in the link or the QR code you share: it is the part after the "#", which browsers never send to a server. The developer, Google and the hosting service receive only encrypted bytes. What stays visible, because encryption cannot hide it: that a share exists, when and how often data is sent, its start and end, the number of points, and the IP addresses of your devices and of the people who open the link. Anyone who holds the **complete** link reads the outing until it expires, so give it only to people you trust. Heart rate is a separate switch, **off by default**; if it is off, no heart rate is ever sent.
+
+### How long does a link live?
+
+Sharing ends with your recording, and the final track stays visible for 2 hours; a link never lives more than 24 hours, whatever happens. If you stop a recording and start another within 10 minutes, the same link carries on (the app asks whether to stop sharing as well, or keep the link). The data is deleted from the server the next time the app launches after that.
+
+### Where does the data go?
+
+To a Google Firebase project operated by the developer (Realtime Database, anonymous accounts, and Hosting for the viewer page at speedvario.web.app), in Europe. The app contains no Google or Firebase SDK; it talks to the project with plain HTTPS requests. The viewer page loads map tiles from OpenFreeMap and elevation from AWS Terrain Tiles, which can see the area a viewer looks at. It uses no analytics and no cookies. The full details are in the [privacy policy](privacy).
+
+### The viewer says "Signal lost for X min"
+
+The page shows it when no data has arrived for a while (tunnel, no network, a flat battery). Points wait on the device and are sent when the signal returns; the message disappears by itself and the gap is drawn dashed on the track.
+
 ## What the app does
 
 - Real-time speed (km/h, mph, knots), GPS + barometric altitude, and vertical speed (variometer)
@@ -85,15 +107,17 @@ In the Logbook, swipe left on any session to delete it, or uninstall the app to 
 - Flags of every country your track crosses
 - Apple Health: workouts saved with their GPS route
 - Optional iCloud backup and multi-device sync — your own iCloud, no account, no subscription
+- **Live sharing (optional, off by default):** a private link to follow your outing on a 3D map, end-to-end encrypted, ending with the outing
+- Compare two outings, automatic outing names, route following and drawing, experimental Elevator and Roller coaster modes
 - Export GPX, CSV, KMZ, FIT and IGC; import GPX, CSV, IGC
-- No account, no ads, no trackers
+- No account, no ads, no trackers — live sharing, if you turn it on, is end-to-end encrypted
 
 ---
 ---
 
 # Speed Vario — Assistance
 
-*Dernière mise à jour : septembre 2026*
+*Dernière mise à jour : 21 octobre 2026*
 
 Une question, un défaut à signaler, une traduction qui sonne faux : **variospeed67@gmail.com**
 
@@ -139,7 +163,7 @@ Deux chemins, et le premier est celui à choisir.
 
 ### Ma fréquence cardiaque monte-t-elle dans iCloud ?
 
-**Non — jamais.** Les règles d'Apple interdisent aux apps de stocker des données de santé dans iCloud : la fréquence cardiaque et l'énergie active sont donc retirées de tout ce que Speed Vario envoie. Elles restent sur l'appareil et dans Apple Santé. Lors d'une restauration sur un nouvel iPhone, l'app les relit dans Apple Santé sur la fenêtre temporelle de la séance, si bien que la courbe cardiaque est reconstituée malgré tout — à condition que « Enregistrer dans Apple Santé » ait été actif au moment de l'enregistrement.
+**Non — jamais.** Les règles d'Apple interdisent aux apps de stocker des données de santé dans iCloud : la fréquence cardiaque et l'énergie active sont donc retirées de tout ce que Speed Vario envoie. Elles restent sur l'appareil et dans Apple Santé. Lors d'une restauration sur un nouvel iPhone, l'app les relit dans Apple Santé sur la fenêtre temporelle de la séance, si bien que la courbe cardiaque est reconstituée malgré tout — à condition que « Enregistrer dans Apple Santé » ait été actif au moment de l'enregistrement. (Le partage en direct est autre chose : la fréquence cardiaque n'y est envoyée que si vous l'activez, et seulement chiffrée — voir plus bas.)
 
 ### iCloud affiche « Aucun compte iCloud sur cet appareil »
 
@@ -159,6 +183,28 @@ Dans le Carnet, balayez une séance vers la gauche pour la supprimer, ou désins
 
 ---
 
+## Partage en direct
+
+### Comment fonctionne le partage en direct ?
+
+Touchez l'icône d'ondes dans le dock en haut de l'écran principal (avant ou pendant une sortie), lisez l'avis et touchez **Démarrer le partage**. Vous obtenez un lien, un QR code et un bouton de partage ; la personne à qui vous donnez le lien suit votre sortie sur une carte 3D, depuis n'importe quel navigateur, sans app ni compte : position, vitesse, altitude, distance et — seulement si vous l'activez — fréquence cardiaque, avec les cinq zones. Si votre Apple Watch enregistre, c'est elle qui envoie les points ; sinon, l'iPhone. Un point toutes les 15 secondes (30 secondes sous 30 % de batterie ; le partage s'arrête sous 10 %). Le bouton **Arrêter** rouge reste toujours à portée, sur l'iPhone comme sur la montre (touchez deux fois la pastille rouge « En direct »).
+
+### Le développeur peut-il voir ma position ou ma fréquence cardiaque ?
+
+**Non.** Chaque point est chiffré sur votre appareil (AES-256-GCM) avant l'envoi, et la clé n'existe que dans le lien ou le QR code que vous partagez : c'est la partie après le « # », que les navigateurs n'envoient à aucun serveur. Le développeur, Google et l'hébergeur ne reçoivent que des octets chiffrés. Ce qui reste visible, parce que le chiffrement ne peut pas le cacher : qu'un partage existe, quand et à quel rythme des données sont envoyées, son début et sa fin, le nombre de points, et les adresses IP de vos appareils et des personnes qui ouvrent le lien. Quiconque possède le lien **complet** lit la sortie jusqu'à son expiration : ne le donnez qu'à des personnes de confiance. La fréquence cardiaque a son propre réglage, **désactivé par défaut** ; s'il est éteint, aucune fréquence cardiaque n'est jamais envoyée.
+
+### Combien de temps vit un lien ?
+
+Le partage s'arrête avec votre enregistrement, et la trace finale reste visible 2 heures ; un lien ne vit jamais plus de 24 heures, quoi qu'il arrive. Si vous arrêtez un enregistrement et en démarrez un autre dans les 10 minutes, le même lien continue (l'app demande s'il faut arrêter aussi le partage ou garder le lien). Les données sont ensuite effacées du serveur au lancement suivant de l'app.
+
+### Où vont les données ?
+
+Vers un projet Google Firebase exploité par le développeur (Realtime Database, comptes anonymes, et Hosting pour la page du spectateur à speedvario.web.app), en Europe. L'app ne contient aucun SDK Google ni Firebase ; elle parle au projet par de simples requêtes HTTPS. La page du spectateur charge des tuiles de carte d'OpenFreeMap et du relief d'AWS Terrain Tiles, qui voient la zone regardée. Elle n'utilise ni analytique ni cookie. Le détail complet figure dans la [politique de confidentialité](privacy).
+
+### Le spectateur voit « Signal perdu depuis X min »
+
+La page l'affiche quand aucune donnée n'arrive plus depuis un moment (tunnel, pas de réseau, batterie vide). Les points attendent sur l'appareil et partent au retour du signal ; le message disparaît tout seul et le trou est dessiné en pointillés sur la trace.
+
 ## Ce que fait l'app
 
 - Vitesse en temps réel (km/h, mph, nœuds), altitude GPS + barométrique, vitesse verticale (variomètre)
@@ -172,8 +218,10 @@ Dans le Carnet, balayez une séance vers la gauche pour la supprimer, ou désins
 - Drapeaux de tous les pays traversés
 - Apple Santé : entraînements enregistrés avec leur tracé GPS
 - Sauvegarde iCloud et synchronisation multi-appareils, optionnelles — votre iCloud, sans compte ni abonnement
+- **Partage en direct (facultatif, désactivé par défaut) :** un lien privé pour suivre votre sortie sur une carte 3D, chiffré de bout en bout, qui s'éteint avec la sortie
+- Comparaison de deux sorties, noms automatiques, suivi et tracé d'itinéraires, modes expérimentaux Ascenseur et Montagnes russes
 - Export GPX, CSV, KMZ, FIT et IGC ; import GPX, CSV, IGC
-- Sans compte, sans publicité, sans traceur
+- Sans compte, sans publicité, sans traceur — le partage en direct, si vous l'activez, est chiffré de bout en bout
 
 ---
 
